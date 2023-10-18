@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <math.h>
 #include <windows.h>
@@ -23,7 +23,7 @@ private:
     ArrayManager() {};
     ArrayManager(const int& Rows, const int& Value) {
         _rows = Rows;
-        _array[_rows];
+        _array = new int[_rows];
 
         for (int i = 0; i < _rows; i++)
         {
@@ -60,12 +60,14 @@ private:
         return temp;
     }
 
-    operator char() const {
-        char chars[sizeof(_array) / 4];
+    operator char*() {
+        char* chars= new char[(sizeof(_array)/4)];
         for (int i = 0; i < _rows; i++)
         {
             chars[i] = static_cast<char>(_array[i]);
         }
+        return chars;
+
     }
 
 };
